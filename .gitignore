@@ -1,3 +1,6 @@
 /data
 /excel_output
 /video_output
+/.vscode
+*/__pycache__
+/__pycache__

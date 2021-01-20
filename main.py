@@ -11,10 +11,11 @@
 import argparse
 import os
 import re
+
+import cv2
 import numpy as np
 import pandas as pd
 import torch
-import cv2
 
 from models.with_mobilenet import PoseEstimationWithMobileNet
 from modules.keypoints import extract_keypoints, group_keypoints

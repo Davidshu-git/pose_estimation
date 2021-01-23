@@ -239,7 +239,7 @@ if __name__ == '__main__':
     default='checkpoints/checkpoint_iter_370000.pth')
     parser.add_argument('--height-size', type=int, default=256,
     help='network input layer height size')
-    parser.add_argument('--video', type=str, default='data', help='path to video file or camera id')
+    parser.add_argument('--video', type=str, default='/home/sdw/data_set/data', help='path to video file or camera id')
     parser.add_argument('--cpu', action='store_true', help='run network inference on cpu')
     parser.add_argument('--track', type=int, default=1, help='track pose id in video')
     parser.add_argument('--smooth', type=int, default=1, help='smooth pose keypoints')
@@ -249,7 +249,7 @@ if __name__ == '__main__':
         raise ValueError('Either --video or --image has to be provided')
 
     net = PoseEstimationWithMobileNet()
-    checkpoint = torch.load(args.checkpoint_path, map_location='cpu')
+    checkpoint = torch.load(args.checkpoint_path, map_location='gpu')
     load_state(net, checkpoint)
     file_name_list = os.listdir(args.video)
     for index, file_name in enumerate(file_name_list):

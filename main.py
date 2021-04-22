@@ -249,13 +249,13 @@ if __name__ == '__main__':
         raise ValueError('Either --video or --image has to be provided')
 
     net = PoseEstimationWithMobileNet()
-    checkpoint = torch.load(args.checkpoint_path, map_location='gpu')
+    checkpoint = torch.load(args.checkpoint_path, map_location='cpu')
     load_state(net, checkpoint)
     file_name_list = os.listdir(args.video)
     for index, file_name in enumerate(file_name_list):
         file_name_dir = os.path.join(args.video, file_name)
         frame_provider = VideoReader(file_name_dir)
-        file_name_mask_str = file_name_mask(file_name, index)
+        file_name_mask_str = file_name # file_name_mask(file_name, index)
         print(file_name_mask_str)
         point_list_result = run_demo(net, frame_provider, args.height_size, args.cpu,
         args.track, args.smooth, file_name_mask_str)
